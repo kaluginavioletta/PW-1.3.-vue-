@@ -1,12 +1,15 @@
-<script>
-
-</script>
-
 <template>
-
-</template>
-
-<style scoped>
-
-
-</style>
+    <div id="app">
+      <taks></taks>
+    </div>
+  </template>
+  
+  <script>
+  import Tasks from './components/Tasks.vue'
+  
+  export default {
+    components: {
+      Tasks
+    }
+  }
+  </script>

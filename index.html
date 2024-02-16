@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Task</title>
-    <link rel="stylesheet" href="src/assets/main.css">
-  </head>
-  <body>
-    <div id="app">
-      <taks></taks>
-    </div>    
-    <script defer src="src/main.js"></script>
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task</title>
+  <link rel="stylesheet" href="src/assets/main.css">
+</head>
+<body>
+  <div id="app">
+
+    <div class="tasks">
+
+        <div style="display: flex; justify-content: space-between;">
+          <form @submit.prevent="addTask">
+            <div class="formTask">
+              <h2>Форма создания задачи</h2>
+              <label for="title">Заголовок задачи:</label>
+              <input id="title" type="text" v-model="newTask.title">
+              <label for="description">Описание задачи:</label>
+              <textarea id="description" v-model="newTask.description"></textarea>
+              <label for="deadline">Дедлайн:</label>
+              <input id="deadline" type="date" v-model="newTask.deadline">
+              <b-form-textarea v-model="task.description" required></b-form-textarea>
+              <b-form-datepicker v-model="task.deadline" required></b-form-datepicker>
+              <button type="submit">Добавить задачу</button>
+            </div>
+          </form>
+        
+    </div>
+  </div>
+  <script defer src="src/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+</body>
 </html>

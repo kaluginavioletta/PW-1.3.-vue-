@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(101, 238, 144);
+}
+.colums {
+    background-color: rgb(86, 240, 189);
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    border: 2px solid rgb(110, 235, 235);
+}
+.formTask {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 227px;
+    height: 290px;
+    background-color: #2bc894;
+    align-items: center;
+    text-align: center;
+}
