@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.15"
+    "bootstrap": "^5.3.2",
+    "bootstrap-vue": "^2.23.1",
+    "vue": "^3.4.19",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
