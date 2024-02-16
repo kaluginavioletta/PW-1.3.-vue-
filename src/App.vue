@@ -1,47 +1,51 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
+import draggable from 'vuedraggable';
+
+  export default {
+    name: 'App',
+    components: {
+      draggable
+    },
+    data() {
+      return {
+        newTask: "",
+        arrBacklog: [
+          {name: "Запланированные задачи"},
+          {name: "Задачи в работе"},
+          {name: "Тестирование"},
+          {name: "Выполненные задачи"}
+        ],
+        arrInWork: [],
+        arrTested: [],
+        arrDone: []
+      }
+    },
+    methods: {
+      add() {
+        if(this.newTask) {
+          this.arrBacklog.push({name: this.newTask});
+          this.newTask = "";
+        }
+      }
+    }
+  }
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col form-inline">
+          <b-form-input v-model="newTask" placeholder="Добавить задачу" @keyup.enter="add"></b-form-input>
+        </div>
+      </div>
     </div>
-  </header>
 
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
