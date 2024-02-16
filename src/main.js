@@ -1,23 +1,16 @@
 new Vue({
     el: '#app',
-    data() {
+    data(){
         return {
-          newTask: "",
-          columns: [
-            { id: 1, name: "Запланированные задачи" },
-            { id: 2, name: "Задачи в работе" },
-            { id: 3, name: "Тестирование" },
-            { id: 4, name: "Выполненные задачи" },
-          ],
-          newTask: {
+            newTask: {
                 title: '',
                 description: '',
                 deadline: '',
                 createdAt: new Date().toLocaleString(),
                 lastChange: null,
-                return: null,
+                rreturn: null,
                 isOverdue: false
-          },
+            },
             plannedTasks: [],
             progressTasks: [],
             testingTasks: [],
@@ -27,7 +20,7 @@ new Vue({
             editedColumn: null,
         }
     },
-    methods: {
+    methods:{
         addTask() {
             if (!this.newTask.title) {
                 alert('Необходимо указать заголовок задачи');
@@ -46,40 +39,42 @@ new Vue({
                 return;
             }
             this.plannedTasks.push({...this.newTask});
-            this.newTask = {
-                title: '',
-                description: '',
-                deadline: '',
-                createdAt: new Date().toLocaleString(),
-                lastChange: null
+            console.log(this.plannedTasks)
+        },
+        deleteTask(taskIndex) {
+            this.plannedTasks.splice(taskIndex, 1);
+        },
+        startEditing(taskIndex, column) {
+            this.editedTask = {...this[column][taskIndex]};
+            this.editedTaskIndex = taskIndex;
+            this.editedColumn = column;
+        },
+        finishEditing(taskIndex) {
+            this[this.editedColumn][taskIndex] = {...this.editedTask, lastChange: new Date().toLocaleString()};
+            this.editedTask = null;
+            this.editedTaskIndex = null;
+            this.editedColumn = null;
+        },
+        moveToInProgress(taskIndex) {
+            const taskToMove = this.plannedTasks.splice(taskIndex, 1)[0];
+            this.progressTasks.push(taskToMove);
+        },
+        moveToTesting(taskIndex) {
+            const taskToMove = this.progressTasks.splice(taskIndex, 1)[0];
+            this.testingTasks.push(taskToMove);
+        },
+        returnToInProgress(index) {
+            if (!this.testingTasks[index].rreturn) {
+                alert('Необходимо указать причину возврата');
+                return;
             }
+            const taskToMove = this.testingTasks.splice(taskIndex, 1)[0];
+            this.progressTasks.push(taskToMove);
         },
-        tasksInColumn(columnId) {
-          return this.tasks.filter(task => task.columnId === columnId);
-        },
-        statusClass() {
-            if (this.status === 'completed') {
-              return 'badge-success';
-            } else if (this.status === 'in progress') {
-              return 'badge-warning';
-            } else {
-              return 'badge-secondary';
-            }
-        },
-        moveTask(column) {
-            this.$emit('move', this.task, column);
-        },
-        submit() {
-            this.$emit('submit', this.task);
-        },
-        editTask() {
-            this.$emit('edit', this.task);
-        },
-        deleteTask() {
-            this.$emit('delete', this.task);
-        },
-        moveTask(column) {
-            this.$emit('move', this.task, column);
-        },
-    },
-});
+        moveToCompleted(index) {
+            const taskToMove = this.testingTasks.splice(index, 1)[0];
+            taskToMove.isOverdue = new Date(taskToMove.deadline) < new Date();
+            this.completedTasks.push(taskToMove);
+        }
+    }
+})
