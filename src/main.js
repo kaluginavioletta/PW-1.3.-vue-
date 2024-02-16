@@ -1,18 +1,51 @@
-import './assets/main.css'
+Vue.component('taks', {
+    template: `
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col form-inline">
+          <b-form-input v-model="newTask" placeholder="Добавить задачу" @keyup.enter="add"></b-form-input>
+        </div>
+      </div>
+    </div>
 
-import { createApp } from 'vue'
-import App from './App.vue'
+    <div class="row">
+      <div class="col-md-3">
+        <div class="p-2 alert alert-secondary">
+          <h3>Mini Trello</h3>
+          <div class="list-group" :list="arrBacklog" group="tasks">
+            <div class="list-group-item" v-for="el in arrBacklog" :key="el.name">
+              {{ el.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    `,
+    data() {
+        return {
+          newTask: "",
+          arrBacklog: [
+            {name: "Запланированные задачи"},
+            {name: "Задачи в работе"},
+            {name: "Тестирование"},
+            {name: "Выполненные задачи"}
+          ],
+          arrInWork: [],
+          arrTested: [],
+          arrDone: []
+        }
+    },
+    methods: {
+        add() {
+          if(this.newTask) {
+            this.arrBacklog.push({name: this.newTask});
+            this.newTask = "";
+          }
+        }
+    },
 
-createApp(App).mount('#app')
+});
 
-import Vue from 'vue'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-
-// Import Bootstrap and BootstrapVue CSS files (order is important)
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-// Make BootstrapVue available throughout your project
-Vue.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
+new Vue({
+    el: '#app', 
+});
