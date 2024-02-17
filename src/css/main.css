@@ -37,26 +37,66 @@ body {
 }
 button {
     background: #75e1ff;
-    border-radius: 20px;
     margin-top: 10px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 10px #eee;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #2ec8ef 0%, #0bbbf6 51%, #5d71df 100%);
+}
+button:hover {
+    background-position: right center;
 }
 .buttonedit {
     background: #00ccff;
-    border-radius: 20px;
     margin-top: 10px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 10px #eee;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #70bdff 0%, #46e5e9 51%, #195afd 100%);
+}
+.buttonedit :hover {
+    background-position: right center;
 }
 .buttondelete {
     background: #ff1259;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 10px #eee;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #e1404e 0%, #ff0000 51%, #bb1b39 100%);
+}
+.buttondelete :hover {
+    background-position: right center;
 }
 .buttonmove {
     background: #508eff75;
     margin-bottom: 10px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 10px #eee;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #009cff 0%, #0261ff 51%, #37a1e6 100%);
+    color: cornsilk;
+}
+.buttonmove :hover {
+    background-position: right center;
 }
 .buttonForm {
     background: #00afff;
-    border-radius: 20px;
     color: cornsilk;
     height: 40px;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 10px #eee;
+    background-image: linear-gradient(to right, #589cea 0%, #477ede 51%, #01acff 100%);
+}
+.buttonForm:hover {
+    background: #269fd6;
+    background-position: right center;
 }
 .taskoverdue {
     color: #ff1b1b;
