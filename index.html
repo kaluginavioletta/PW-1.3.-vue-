@@ -92,9 +92,11 @@
                 <p>Последнее редактирование: {{ task.lastChange }}</p>
                 <button class="buttonedit" @click="startEditing(index, 'testingTasks')">Редактировать</button>
                 <button @click="moveToCompleted(index)">Переместить в выполненное</button>
-                <label for="recovery"><br>Причина возврата:</label>
-                <input class="recovery" type="text" v-model="task.recovery">
-                <button class="buttonmove" @click="returnToInProgress(index)">Вернуть в работу</button>
+                <div>
+                  <label for="recovery"><br>Причина возврата:</label>
+                  <input class="recovery" type="text" v-model="task.recovery">
+                  <button class="buttonmove" @click="returnToInProgress(index)">Вернуть в работу</button>
+                </div>
             </div>
             <div v-else>
                 <form class="formedit"  @submit.prevent="finishEditing(index, 'testingTasks')">
