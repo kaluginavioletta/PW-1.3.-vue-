@@ -2,13 +2,14 @@ new Vue({
     el: '#app',
     data(){
         return {
+            showForm: false,
             newTask: {
                 title: '',
                 description: '',
                 deadline: '',
                 createdAt: new Date().toLocaleString(),
                 lastChange: null,
-                rreturn: null,
+                recovery: null,
                 isOverdue: false
             },
             plannedTasks: [],
@@ -39,22 +40,34 @@ new Vue({
                 return;
             }
             this.plannedTasks.push({...this.newTask});
-            console.log(this.plannedTasks)
+            this.newTask = {
+                title: '',
+                description: '',
+                deadline: '',
+                createdAt: new Date().toLocaleString(),
+                lastChange: null
+            }
+        },
+        toggleForm() {
+            this.showForm = !this.showForm;
         },
         deleteTask(taskIndex) {
             this.plannedTasks.splice(taskIndex, 1);
         },
         startEditing(taskIndex, column) {
-            this.editedTask = {...this[column][taskIndex]};
+            this.editedTask = { ...this[column][taskIndex] };
             this.editedTaskIndex = taskIndex;
             this.editedColumn = column;
+        },    
+        finishEditing() {
+            this[this.editedColumn][this.editedTaskIndex] = { ...this.editedTask, lastChange: new Date().toLocaleString() };
+            this.cancelEditing();
         },
-        finishEditing(taskIndex) {
-            this[this.editedColumn][taskIndex] = {...this.editedTask, lastChange: new Date().toLocaleString()};
+        cancelEditing() {
             this.editedTask = null;
             this.editedTaskIndex = null;
             this.editedColumn = null;
-        },
+        },        
         moveToInProgress(taskIndex) {
             const taskToMove = this.plannedTasks.splice(taskIndex, 1)[0];
             this.progressTasks.push(taskToMove);
@@ -63,16 +76,16 @@ new Vue({
             const taskToMove = this.progressTasks.splice(taskIndex, 1)[0];
             this.testingTasks.push(taskToMove);
         },
-        returnToInProgress(index) {
-            if (!this.testingTasks[index].rreturn) {
+        returnToInProgress(taskIndex) {
+            if (!this.testingTasks[taskIndex].recovery) {
                 alert('Необходимо указать причину возврата');
                 return;
             }
             const taskToMove = this.testingTasks.splice(taskIndex, 1)[0];
             this.progressTasks.push(taskToMove);
         },
-        moveToCompleted(index) {
-            const taskToMove = this.testingTasks.splice(index, 1)[0];
+        moveToCompleted(taskIndex) {
+            const taskToMove = this.testingTasks.splice(taskIndex, 1)[0];
             taskToMove.isOverdue = new Date(taskToMove.deadline) < new Date();
             this.completedTasks.push(taskToMove);
         }

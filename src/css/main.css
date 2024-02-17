@@ -1,0 +1,70 @@
+body {
+    background-color: rgb(101 194 238);
+}
+.tasks {
+    display: flex; 
+    justify-content: space-between;
+}
+.task {
+    background-color: #41badb85;
+    border: 2px solid rgb(25 151 230 / 56%);
+    margin-bottom: 20px;
+    height: 90%;
+}
+.column {
+    background-color: rgb(38 185 255);
+    width: 30%;
+    display: flex;
+    border: 2px solid rgb(110 187 235);
+    flex-direction: column;
+    color: azure;
+    text-align: center;
+    margin-left: 20px;
+}
+.formTask {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 227px;
+    height: 290px;
+    background-color: #42c0ff8a;
+    align-items: center;
+    text-align: center;
+    border: 2px dashed #87e7f7;
+    box-shadow: -1px 2px 15px rgba(0,0,0,0.5);
+    margin-right: 15px;
+    color: white;
+}
+button {
+    background: #75e1ff;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+.buttonedit {
+    background: #00ccff;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+.buttondelete {
+    background: #ff1259;
+}
+.buttonmove {
+    background: #508eff75;
+    margin-bottom: 10px;
+}
+.buttonForm {
+    background: #00afff;
+    border-radius: 20px;
+    color: cornsilk;
+    height: 40px;
+}
+.taskoverdue {
+    color: #ff1b1b;
+}
+.taskcompleted {
+    color: #1eff1b;
+}
+.formedit {
+    display: flex;
+    flex-direction: column;
+}
