@@ -25,16 +25,16 @@
 
     <div class="column">
         <h2>Запланированные задачи</h2>
-        <div class="task" v-for="(task, index) in plannedTasks" :key="index">
+        <div class="task" draggable="true" v-for="(task, index) in plannedTasks" :key="index">
             <div v-if="editedTaskIndex !== index || editedColumn !== 'plannedTasks'">
-                <h3>{{ task.title }}</h3>
-                <p>{{ task.description }}</p>
-                <p>Дата создания: {{ task.createdAt }}</p>
-                <p>Дедлайн: {{ task.deadline }}</p>
-                <p>Последнее редактирование: {{ task.lastChange }}</p>
+                <h3 class="tasks__item">{{ task.title }}</h3>
+                <p class="tasks__item">{{ task.description }}</p>
+                <p class="tasks__item">Дата создания: {{ task.createdAt }}</p>
+                <p class="tasks__item">Дедлайн: {{ task.deadline }}</p>
+                <p class="tasks__item">Последнее редактирование: {{ task.lastChange }}</p>
                 <button class="buttonedit" @click="startEditing(index, 'plannedTasks')">Редактировать</button>
                 <button class="buttondelete" @click="deleteTask(index)">Удалить</button>
-                <button @click="moveToInProgress(index)">Переместить в работу</button>
+                <!-- <button @click="moveToInProgress(index)">Переместить в работу</button> -->
             </div>
             <div v-else>
                 <h3>Редактировать задачу</h3>
@@ -54,16 +54,16 @@
 
     <div class="column">
         <h2>Задачи в работе</h2>
-        <div class="task" v-for="(task, index) in progressTasks" :key="index">
+        <div class="task" draggable="true" v-for="(task, index) in progressTasks" :key="index">
             <div v-if="editedTaskIndex !== index || editedColumn !== 'progressTasks'">
-                <h3>{{ task.title }}</h3>
-                <p>{{ task.description }}</p>
-                <p>Дата создания: {{ task.createdAt }}</p>
-                <p>Дедлайн: {{ task.deadline }}</p>
-                <p>Последнее редактирование: {{ task.lastChange }}</p>
-                <p v-if="task.recovery">Причина возврата: {{ task.recovery }}</p>
+                <h3 class="tasks__item">{{ task.title }}</h3>
+                <p class="tasks__item">{{ task.description }}</p>
+                <p class="tasks__item">Дата создания: {{ task.createdAt }}</p>
+                <p class="tasks__item">Дедлайн: {{ task.deadline }}</p>
+                <p class="tasks__item">Последнее редактирование: {{ task.lastChange }}</p>
+                <p class="tasks__item" v-if="task.recovery">Причина возврата: {{ task.recovery }}</p>
                 <button class="buttonedit" @click="startEditing(index, 'progressTasks')">Редактировать</button>
-                <button @click="moveToTesting(index)">Отправить в тестирование</button>
+                <!-- <button @click="moveToTesting(index)">Отправить в тестирование</button> -->
             </div>
             <div v-else>
                 <form class="formedit" @submit.prevent="finishEditing(index)">
@@ -82,15 +82,15 @@
 
     <div class="column">
         <h2>Тестирование</h2>
-        <div class="task" v-for="(task, index) in testingTasks" :key="index">
+        <div class="task" draggable="true" v-for="(task, index) in testingTasks" :key="index">
             <div v-if="editedTaskIndex !== index || editedColumn !== 'testingTasks'">
-                <h3>{{ task.title }}</h3>
-                <p>{{ task.description }}</p>
-                <p>Дата создания: {{ task.createdAt }}</p>
-                <p>Дедлайн: {{ task.deadline }}</p>
-                <p>Последнее редактирование: {{ task.lastChange }}</p>
+                <h3 class="tasks__item">{{ task.title }}</h3>
+                <p class="tasks__item">{{ task.description }}</p>
+                <p class="tasks__item">Дата создания: {{ task.createdAt }}</p>
+                <p class="tasks__item">Дедлайн: {{ task.deadline }}</p>
+                <p class="tasks__item">Последнее редактирование: {{ task.lastChange }}</p>
                 <button class="buttonedit" @click="startEditing(index, 'testingTasks')">Редактировать</button>
-                <button @click="moveToCompleted(index)">Переместить в выполненное</button>
+                <!-- <button @click="moveToCompleted(index)">Переместить в выполненное</button> -->
                 <div>
                   <label for="recovery"><br>Причина возврата:</label>
                   <input class="recovery" type="text" v-model="task.recovery">
